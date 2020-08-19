@@ -1,3 +1,29 @@
+PROBLEM STATEMENT
+
+This is a Distributed System which provides REST-based APIs for an object-based storage service for
+the following requirements.
+-User should be able to create/delete a bucket
+-User should be able to create/delete files in a given bucket
+
+The API should returns the following in a JSON object:
+-Success or failure
+-Vector clocks of all replicas
+-Node number where the write took place (in case of write)
+
+The implementation of the object storage system should have the following characteristics as explained in
+The Amazon's Dynamo paper.
+-Data is partitioned and replicated using consistent hashing. Number of nodes (VMs) should be at
+least 3.
+-High availability for writes using vector clocks with reconciliation during reads. Consistency is
+facilitated by object versioning using vector clocks and application-level conflict resolution in case
+of conflicts
+-Temporary failures in replicas is handled by sloppy quorum technique and hinted hand-off.
+-Failures of nodes is detected by a gossip based distributed failure detection. 
+
+
+==========================================================================================================
+SYSTEM IMPLEMENTATION DETAILS
+
 System Configuration: 
 	Cluster of Physical Machines : 4
 	Replication Factor: 3
@@ -11,7 +37,7 @@ File Description
 	4. message_struct ----------------------------> Object Message Structure passed over socket
 	5. server_socket.py and client_socket.py------>	Vector Clock Handling,Bucket creation/Deletion,File creation/deletion implementation
 							Sloppy Quorum ,Hinted Hand Off and Gossip protocol communication implementation
- 
+How to Run the Application
 1. Run the REST server through running run.py file. (python run.py)
 2. Run all the socket servers on every node by running server_socket.py (python server_socket.py)
 3. Run hintedOffScheduler on every node by running hintedHandOff.py (python hintedHandOff.py)
