@@ -70,7 +70,10 @@ How to Run the Application
 				    "172.18.16.86 : 14 , 172.18.16.123 : 14 , 172.18.16.47 : 14 "
 				  ]
 				}
-		Output 2: If two nodes are up, wrtie the files in respective two nodes. Place the down node into down_system.json file by calling operation number 8. HintedHandoff will take care of 				  whenever the node will be up, it will run retry_down_system and place the content into the node whenever it will give true response. Please Check HintedHandOff Terminal for 				  Output.
+		
+		Output 2: If two nodes are up, wrtie the files in respective two nodes. Place the down node into down_system.json file by calling operation number 8. 
+		HintedHandoff will take care of whenever the node will be up, it will run retry_down_system and place the content into the node whenever it will give true
+		response. Please Check HintedHandOff Terminal for Output.
 		Sample Output:
 				{
 				  "down_system_data": [
@@ -90,7 +93,11 @@ How to Run the Application
 				  ]
 				}
 
-		Output 3: If Only one node is up, write the files in respective node. Find the hintedNode. Place the file on hintedNode so that quorum can be reached. A file will be created on 	     			          hinted system named hinted.json which will contain the hints of the down nodes. Whenever any of the down node is up, its entry is removed from hinted.json and another hint is     				  sent to any of the up node from the preference list and down_system.json is updated there. Whenever the node will be up, files will be sent through node which have hint about the 				  down system. Please Check HintedHandOff Terminal for Output.
+		
+		Output 3: If Only one node is up, write the files in respective node. Find the hintedNode. Place the file on hintedNode so that quorum can be reached. 
+		A file will be created on hinted system named hinted.json which will contain the hints of the down nodes. Whenever any of the down node is up, its entry 
+		is removed from hinted.json and another hint is sent to any of the up node from the preference list and down_system.json is updated there. Whenever the 
+		node will be up, files will be sent through node which have hint about the down system. Please Check HintedHandOff Terminal for Output.
 		Sample Output:
 				{
 				  "hinted_system_data": "172.18.16.38",
@@ -114,5 +121,7 @@ How to Run the Application
 
 5. Additional Notes:
 	1. Gossip Based Protocol:
-		This will be run through hintedHandOff.py which is basically a scheduler and calling create_gossip function periodically. We read from peer_list which contains node_list. Gossip is being 			created by any random node. We are picking any random node from node_list and sending gossip which will eventually create a gossip.txt file. We will keep doing this in iterative way so 			that gossip reaches to every node in the node list. 
+		This will be run through hintedHandOff.py which is basically a scheduler and calling create_gossip function periodically. We read from peer_list which contains
+		node_list. Gossip is being created by any random node. We are picking any random node from node_list and sending gossip which will eventually create a gossip.txt
+		file. We will keep doing this in iterative way so that gossip reaches to every node in the node list. 
 
