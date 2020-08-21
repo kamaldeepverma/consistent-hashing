@@ -103,7 +103,6 @@ def share_v_clock(bucket_name, operation_number, temp_folder, file_name, pref_li
     message = MessageStruct(operation_number,bucket_name, file_name, hinted_operation, failed_nodes, pref_list,'','','',[],'','',temp_folder,False)
     message.operation=5
     time.sleep(0.1)
-    print('share_clock')
     for node_ip in pref_list:
         message.self_node=node_ip
         socketDynamoClient = SocketDynamoClient(node_ip,message)
