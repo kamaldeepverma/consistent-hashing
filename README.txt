@@ -40,7 +40,7 @@ File Description
 How to Run the Application
 1. Run the REST server through running run.py file. (python run.py)
 2. Run all the socket servers on every node by running server_socket.py (python server_socket.py)
-3. Run hintedOffScheduler on every node by running hintedHandOff.py (python hintedHandOff.py)
+3. Run Sloppy Quorum & Hinted HandOff Schedular on every node by running sloppy_quorum_hinted_handoff.py (python sloppy_quorum_hinted_handoff.py)
 4. REST Service END POINTS
 
 	a) http://172.18.16.47:6003/buckets/<bucked_id>       methods = ['POST']
