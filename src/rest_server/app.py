@@ -8,7 +8,7 @@ from client_socket import SocketDynamoClient
 import logging, os
 from flask import request, jsonify,Response
 from flask import render_template
-from consistentHashing import preference_list
+from consistent_hashing import preference_list
 from creating_bucket import create_bucket
 from client_socket import bucket_creation_1, create_down_system,share_v_clock
 from vectorclock import VectorClock
@@ -52,14 +52,9 @@ def createApp():
     def bucket_creation(bucket_id):
         pref_list, node_list= preference_list(bucket_id)
         file_name = ""
-        #print(pref_list)
-        #print(bucket_id)
         operation_number = 1
-        #print("Pref_list" , pref_list)
         resp,vector_clock_list = bucket_creation_1(bucket_id, operation_number,'', file_name, pref_list,0,[],False)
-        
         replicas=[]
-        #print("Response",resp)
         for i in range(len(pref_list)):
             if resp[i]:
                 replicas.append(pref_list[i])
@@ -107,8 +102,6 @@ def createApp():
         saved_path = os.path.join(app.config['UPLOAD_BUCKET_FOLDER'], file_name)
         file_content.save(saved_path)
         pref_list, node_list = preference_list(bucket_id)
-        #file_path = UPLOAD_BUCKET_FOLDER + bucket_id + file_name
-        #print(file_path)
         operation_number = 3
         resp_data['pref_list'] = pref_list
         is_file_created = False
@@ -116,24 +109,19 @@ def createApp():
         resp, vector_clock_list = bucket_creation_1(bucket_id, operation_number, '',file_name, pref_list,0,[],False)
         share_v_clock(bucket_id, operation_number, '',file_name, pref_list,0,[],False)
         replicas=[]
-        print(vector_clock_list)
         counter = 0
         data ={}
         with open('vec_clock.json', 'r') as f:
             data = json.load(f)
-        print(data)
         resp_dict_vector = {}
         for i in range(len(pref_list)):
             if resp[i]:
-                try:
-                    print("hiiiiiiiiiiiiii")                
+                try:               
                     counter = data[pref_list[i]+"_"+bucket_id + "_"+file_name]
-                    #print(pref_list[i]+"_"+bucket_id + "_"+file_name, counter)
                 except Exception as e:
                     print(e)
                     counter = 0
                 counter = counter+1
-                #print(pref_list[i],counter)
                 resp_dict_vector[pref_list[i] + "_" + bucket_id + "_" + file_name] = counter
                 vec.update(pref_list[i]+"_" +  bucket_id + "_" + file_name, counter)
                 replicas.append(pref_list[i])
@@ -147,8 +135,6 @@ def createApp():
             operation_number_hinted = 3
             operation_x =6
             hinted_system = list(set(node_list) - set(pref_list))
-            #hinted_system = "172.18.16.47"
-            print(file_name)
             resp = bucket_creation_1(bucket_id, operation_x, temp_folder, file_name, hinted_system, operation_number_hinted, down_system, False)
             if(resp):
                 resp_data['hinted_system_data'] = hinted_system[0]
@@ -159,7 +145,6 @@ def createApp():
             resp = create_down_system(node_ip, node_down_system, bucket_id, 8, file_name )
             if(resp):
                 resp_data['down_system_data'] = down_system  
-        print("downSystem is ",down_system)
     
         resp_data['pref_list'] = pref_list
         resp_data['replicas_written']=replicas        
@@ -171,8 +156,6 @@ def createApp():
     def file_delete(bucket_id, file_id):
         resp_data={}
         pref_list = preference_list(bucket_id)
-        #file_path = UPLOAD_BUCKET_FOLDER + bucket_id + file_name
-        #print(file_path)
         operation_number = 4
         resp_data['pref_list'] = pref_list
         is_file_deleted = False
