@@ -14,8 +14,8 @@ from client_socket import bucket_creation_1, create_down_system,share_v_clock
 from vectorclock import VectorClock
 import json, random
 
-peers_file_path='/home/HDUSER/clouda2/peers.txt'
-gossip_file_path ='/home/HDUSER/clouda2/gossip.txt'
+peers_file_path='~/object_store/peers.txt'
+gossip_file_path ='~/object_store/gossip.txt'
 
 vec = VectorClock()
 def createApp():
