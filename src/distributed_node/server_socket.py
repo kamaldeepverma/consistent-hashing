@@ -4,9 +4,9 @@ import socket,pickle,os,shutil, json,random
 from message_struct import MessageStruct
 from client_socket import SocketDynamoClient
 
-path='/home/HDUSER/clouda2/buckets/'
-peers_file_path='/home/HDUSER/clouda2/peers.txt'
-gossip_file_path ='/home/HDUSER/clouda2/gossip.txt'
+path='~/object_store/buckets/'
+peers_file_path='~/object_store/peers.txt'
+gossip_file_path ='~/object_store/gossip.txt'
 
 # create a socket object
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
@@ -139,7 +139,7 @@ while True:
     elif message.operation == 8:
  
         clientsocket.send('Acknowledgement'.encode('ascii'))
-        file_path = "/home/HDUSER/clouda2/down_system.json"
+        file_path = "~/object_store/down_system.json"
         data = []
         try:
             fh = open(file_path,'r')
