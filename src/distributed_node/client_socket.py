@@ -10,7 +10,6 @@ port = 9995
 resp=[0]*3
 flag = False
 
-
 class SocketDynamoClient:
     def __init__(self, node_ip, message):
         self.node_ip = node_ip
