@@ -27,7 +27,7 @@ def createApp():
 
     PROJECT_HOME = os.path.dirname(os.path.realpath(__file__))
     UPLOAD_FOLDER = '{}/uploads/'.format(PROJECT_HOME)
-    UPLOAD_BUCKET_FOLDER = '/home/HDUSER/clouda2/uploads/'
+    UPLOAD_BUCKET_FOLDER = '~/object_store/uploads/'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     
     if not os.path.exists(peers_file_path):
