@@ -5,10 +5,10 @@ from message_struct import MessageStruct
 from client_socket import SocketDynamoClient
 from client_socket import check_failed_Node, create_down_system, check_failed_Node_2
 data = []
-path = "/home/HDUSER/clouda2/buckets/hinted/hinted.json"
-path2 = "/home/HDUSER/clouda2/down_system.json"
-peers_file_path='/home/HDUSER/clouda2/peers.txt'
-gossip_file_path ='/home/HDUSER/clouda2/gossip.txt'
+path = "~/object_store/buckets/hinted/hinted.json"
+path2 = "~/object_store/down_system.json"
+peers_file_path='~/object_store/peers.txt'
+gossip_file_path ='~/object_store/gossip.txt'
 def retry_failing_nodes():
     with open(path,'r') as f:
         data = json.load(f)
