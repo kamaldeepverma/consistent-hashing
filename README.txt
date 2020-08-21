@@ -32,8 +32,8 @@ System Configuration:
 	
 File Description
 	1. app.py ------------------------------------> Rest Service Source Code(Flask Application)
-	2. consistentHashing ------------------------->	Consistent Hashing implementation source code
-	3. hintedHandOff.py -------------------------->	Sloppy Quorum ,Hinted Hand Off and Gossip protocol Implementation
+	2. consistent_hashing ------------------------->	Consistent Hashing implementation source code
+	3. sloppy_quorum_hinted_handoff.py -------------------------->	Sloppy Quorum ,Hinted Hand Off and Gossip protocol Implementation
 	4. message_struct ----------------------------> Object Message Structure passed over socket
 	5. server_socket.py and client_socket.py------>	Vector Clock Handling,Bucket creation/Deletion,File creation/deletion implementation
 							Sloppy Quorum ,Hinted Hand Off and Gossip protocol communication implementation
