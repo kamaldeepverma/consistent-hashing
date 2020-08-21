@@ -21,7 +21,7 @@ of conflicts
 -Failures of nodes is detected by a gossip based distributed failure detection. 
 
 
-==========================================================================================================
+===========================================================================================================
 SYSTEM IMPLEMENTATION DETAILS
 
 System Configuration: 
