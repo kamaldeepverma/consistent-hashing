@@ -5,7 +5,6 @@ from message_struct import MessageStruct
 from client_socket import SocketDynamoClient
 
 path='/home/HDUSER/clouda2/buckets/'
-# hinted_path=path+'hinted/'
 peers_file_path='/home/HDUSER/clouda2/peers.txt'
 gossip_file_path ='/home/HDUSER/clouda2/gossip.txt'
 
@@ -93,7 +92,6 @@ while True:
 
 
     elif message.operation == 6:
-        print("i am in equal to 6 case")
         print(message.operation)
         print(message.bucket_key)
         print(message.file_name)
@@ -139,7 +137,7 @@ while True:
         clientsocket.close()
         
     elif message.operation == 8:
-        print("i am in equal to 8th case")
+ 
         clientsocket.send('Acknowledgement'.encode('ascii'))
         file_path = "/home/HDUSER/clouda2/down_system.json"
         data = []
@@ -159,7 +157,7 @@ while True:
         clientsocket.close()
     
     elif message.operation == 11:
-        print("i am in equal to 11 case")
+
         print(message.operation)
         print(message.bucket_key)
         print(message.file_name)
