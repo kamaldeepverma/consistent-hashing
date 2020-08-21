@@ -34,7 +34,6 @@ while True:
     
     if message.operation==3:
         
-
         print(message.operation)
         print(message.bucket_key)
 
