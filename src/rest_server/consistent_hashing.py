@@ -2,7 +2,6 @@ import hashlib
 import binascii
 import bisect
 
-
 class SimpleConsistentHashTable(object):
     def __init__(self, nodelist):
         """Initialize a consistent hash table for the given list of nodes"""
