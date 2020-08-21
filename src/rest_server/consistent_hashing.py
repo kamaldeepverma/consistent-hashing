@@ -48,11 +48,10 @@ class SimpleConsistentHashTable(object):
         return ",".join(["(%s, %s)" %
                          (binascii.hexlify(nodeinfo[0]), nodeinfo[1])
                          for nodeinfo in self.nodelist])
+    
 def preference_list(bucket_name):
     nodeList = ['172.18.16.38', '172.18.16.47', '172.18.16.86', '172.18.16.123']
     sch = SimpleConsistentHashTable(nodeList)
-    #data = "hiiii"
-    #input_key = hashlib.md5(str(data).encode('utf-8')).digest()
     x = sch.find_nodes(bucket_name)
     return x,nodeList
     #print(sch.hashlist)
