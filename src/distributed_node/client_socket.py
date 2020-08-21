@@ -4,7 +4,7 @@ import socket,pickle,sys,json
 from message_struct import MessageStruct
 import threading
 
-path = '/home/HDUSER/clouda2/uploads/'
+path = '~/object_store/uploads/'
 port = 9995
 
 resp=[0]*3
@@ -38,7 +38,7 @@ class SocketDynamoClient:
                 if(self.message.flag == False):
                     file_path=path+self.message.bucket_key+'/'+self.message.file_name
                 else:
-                    file_path = "/home/HDUSER/clouda2/buckets/hinted/"+self.message.file_name
+                    file_path = "~/object_store/buckets/hinted/"+self.message.file_name
 
 
                 f = open(file_path,'rb')
@@ -74,7 +74,7 @@ class SocketDynamoClient:
             elif self.message.operation ==11:
                 s.send(message_string)
                 data = s.recv(1024)
-                path2 = "/home/HDUSER/clouda2/buckets/"
+                path2 = "~/object_store/buckets/"
                 file_path_2=path2+self.message.bucket_key+'/'+self.message.file_name
                 f = open(file_path_2,'rb')
                 l = f.read(1024)
