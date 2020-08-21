@@ -17,6 +17,7 @@ import json, random
 peers_file_path='~/object_store/peers.txt'
 gossip_file_path ='~/object_store/gossip.txt'
 
+
 vec = VectorClock()
 def createApp():
     resp_data = {}
