@@ -48,19 +48,22 @@ How to Run the Application
    Node C:172.18.16.86
    Node D:172.18.16.123
    with REST Server running on Node B:172.18.16.47 
-4. REST Service END POINTS
+
+5. REST Service END POINTS
 
 	a) http://172.18.16.47:6003/buckets/<bucked_id>       methods = ['POST']
 		where bucket_id is the name of bucket/folder. 
 		Result: Buckets will be created in every up Node under '/home/<user>/object_store/buckets/'
 		Status : 200 OK 
+		
 	b) http://172.18.16.47:6003/buckets/<bucked_id>       methods = ['DELETE']
 		where bucket_id is the name of bucket/folder. 
 		Result: Buckets will be deleted from every up Node under '/home/<user>/object_store/buckets/'
 		Status : 200 OK 
+		
 	c) http://172.18.16.47:6003/buckets/<bucket_id>/files     methods = ['POST']
-		I/P: place file under form_data, body section by selecting files.
-		Output 1: If all nodes are up, Write the files and update the respective vector clock
+		I/P: 		place file under form_data, body section by selecting files.
+		Output 1: 	If all nodes are up, Write the files and update the respective vector clock
 		Sample Output: 
 				{
 				  "pref_list": [
@@ -78,9 +81,11 @@ How to Run the Application
 				  ]
 				}
 		
-		Output 2: If two nodes are up, wrtie the files in respective two nodes. Place the down node into down_system.json file by calling operation number 8. 
-		HintedHandoff will take care of whenever the node will be up, it will run retry_down_system and place the content into the node whenever it will give true
-		response. Please Check HintedHandOff Terminal for Output.
+		Output 2: 	If two nodes are up, write the files in respective two nodes. Place the down node into 
+				down_system.json file by calling operation number 8. 
+				HintedHandoff will take care of whenever the node will be up, it will run retry_down_system 
+				and place the content into the node whenever it will give true response. 
+				Please Check HintedHandOff Terminal for Output.
 		Sample Output:
 				{
 				  "down_system_data": [
@@ -101,10 +106,13 @@ How to Run the Application
 				}
 
 		
-		Output 3: If Only one node is up, write the files in respective node. Find the hintedNode. Place the file on hintedNode so that quorum can be reached. 
-		A file will be created on hinted system named hinted.json which will contain the hints of the down nodes. Whenever any of the down node is up, its entry 
-		is removed from hinted.json and another hint is sent to any of the up node from the preference list and down_system.json is updated there. Whenever the 
-		node will be up, files will be sent through node which have hint about the down system. Please Check sloppy_quorum_hinted_handoff Terminal for Output.
+		Output 3: 	If Only one node is up, write the files in respective node. Find the hintedNode. Place the 
+				file on hintedNode so that quorum can be reached. A file will be created on hinted system named 
+				hinted.json which will contain the hints of the down nodes. Whenever any of the down node is up, 
+				its entry is removed from hinted.json and another hint is sent to any of the up node from the 
+				preference list and down_system.json is updated there. Whenever the node will be up, files will 
+				be sent through node which have hint about the down system. 
+				Please Check sloppy_quorum_hinted_handoff Terminal for Output.
 		Sample Output:
 				{
 				  "hinted_system_data": "172.18.16.38",
@@ -126,9 +134,10 @@ How to Run the Application
 		Result: File will be deleted from the respective bucket_id
 		Status: 200 Ok
 
-5. Additional Notes:
+6. Additional Notes:
 	1. Gossip Based Protocol:
-		This will be run through sloppy_quorum_hinted_handoff.py which is basically a scheduler and calling create_gossip function periodically. We read from peer_list
-		which contains node_list. Gossip is being created by any random node. We are picking any random node from node_list and sending gossip which will eventually
-		create a gossip.txt file. We will keep doing this in iterative way so that gossip reaches to every node in the node list. 
+		This will be run through sloppy_quorum_hinted_handoff.py which is basically a scheduler and calling create_gossip 
+		function periodically. We read from peer_list which contains node_list. Gossip is being created by any random node. 
+		We are picking any random node from node_list and sending gossip which will eventually create a gossip.txt file. 
+		We will keep doing this in iterative way so that gossip reaches to every node in the node list. 
 
