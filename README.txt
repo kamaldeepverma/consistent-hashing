@@ -136,8 +136,8 @@ How to Run the Application
 
 6. Additional Notes:
 	1. Gossip Based Protocol:
-		This will be run through sloppy_quorum_hinted_handoff.py which is basically a scheduler and calling create_gossip 
-		function periodically. We read from peer_list which contains node_list. Gossip is being created by any random node. 
-		We are picking any random node from node_list and sending gossip which will eventually create a gossip.txt file. 
-		We will keep doing this in iterative way so that gossip reaches to every node in the node list. 
+	This will be run through sloppy_quorum_hinted_handoff.py which is basically a scheduler and calling create_gossip function periodically. 
+	We read from peer_list which contains node_list. Gossip is being created by any random node. 
+	We are picking any random node from node_list and sending gossip which will eventually create a gossip.txt file. 
+	We will keep doing this in iterative way so that gossip reaches to every node in the node list. 
 
